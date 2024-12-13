@@ -43,7 +43,6 @@ class PelangganController extends Controller
         ]);
 
         $kode = 'KP'. '-'. str_pad(Pelanggan::count() + 1, 6, '0', STR_PAD_LEFT);
-        // Menyimpan data pelanggan ke database
         $pelanggan = Pelanggan::create([
             'kode' => $kode,
             'nama' => $validated['nama'],
@@ -51,7 +50,6 @@ class PelangganController extends Controller
             'jenis_kelamin' => $validated['jenis_kelamin'],
         ]);
 
-        // Mengembalikan response JSON dengan data pelanggan
         return response()->json($pelanggan, 201);
     }
 
@@ -96,10 +94,8 @@ class PelangganController extends Controller
             'jenis_kelamin' => 'sometimes|required|in:PRIA,WANITA',
         ]);
     
-        // Update data pelanggan menggunakan data validasi
         $pelanggan->update($validated);
     
-        // Kembalikan respon JSON dengan data pelanggan yang telah diperbarui
         return response()->json($pelanggan);
     }
     
@@ -113,18 +109,16 @@ class PelangganController extends Controller
  public function destroy(Request $request, $id)
 {
     try {
-        // Cari pelanggan berdasarkan ID dan hapus
+
         $pelanggan = Pelanggan::findOrFail($id);
         $pelanggan->delete();
 
-        // Kembalikan respon JSON dengan pesan berhasil
         return response()->json([
             'message' => 'Pelanggan berhasil dihapus.',
             'success' => true
         ], 200);
 
     } catch (\Exception $e) {
-        // Tangani jika terjadi kesalahan
         return response()->json([
             'message' => 'Gagal menghapus pelanggan: ' . $e->getMessage(),
             'success' => false

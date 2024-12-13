@@ -9,10 +9,8 @@ class Penjualan extends Model
 {
     use HasFactory;
 
-    // Nama tabel
     protected $table = 'penjualans';
 
-    // Kolom yang dapat diisi
     protected $fillable = [
         'nota',
         'tgl',

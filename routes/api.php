@@ -22,7 +22,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// Route::apiResource('pelanggan', PelangganController::class);
 //table pelanggan
 Route::get('/pelanggan/count', [PelangganController::class, 'getCountPelanggan']);
 Route::get('/pelanggan', [PelangganController::class, 'index']);
@@ -32,7 +31,6 @@ Route::put('/pelanggan/{id}', [PelangganController::class, 'update']);
 Route::delete('/pelanggan/{id}', [PelangganController::class, 'destroy']);
 
 //barang
-// Route::apiResource('barang', BarangController::class);
 Route::get('/barang/count', [BarangController::class, 'getCountBarang']);
 Route::get('/barang', [BarangController::class, 'index']);
 Route::post('/barang/store', [BarangController::class, 'store']);
