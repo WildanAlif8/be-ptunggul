@@ -24,7 +24,7 @@ class Penjualan extends Model
         return $this->belongsTo(Pelanggan::class, 'kode_pelanggan', 'kode');
     }
 
-    // Relasi ke Barang melalui Item Penjualan
+    // Relasi Barang melalui Item Penjualan
     public function items()
     {
         return $this->hasMany(ItemPenjualan::class);

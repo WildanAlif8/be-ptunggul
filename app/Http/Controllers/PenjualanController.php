@@ -113,22 +113,25 @@ class PenjualanController extends Controller
 
             $itemPenjualan->delete();
 
-            // Menghitung subtotal baru
-            $remainingItems = ItemPenjualan::where('nota', $nota)->get();
-            $newSubtotal = 0;
-
-            foreach ($remainingItems as $item) {
-                $newSubtotal += $item->qty * $item->harga;
-            }
+            $remainingItems = ItemPenjualan::with('barang')
+                ->where('nota', $nota)
+                ->get();
 
             $penjualan = Penjualan::where('nota', $nota)->first();
-            if ($penjualan) {
-                $penjualan->subtotal = $newSubtotal;
-                $penjualan->save();
-            }
 
             if ($remainingItems->isEmpty()) {
-                $penjualan->delete();
+                if ($penjualan) {
+                    $penjualan->delete();
+                }
+            } else {
+                $newSubtotal = $remainingItems->sum(function ($item) {
+                    return $item->qty * ($item->barang->harga ?? 0);
+                });
+
+                if ($penjualan) {
+                    $penjualan->subtotal = $newSubtotal;
+                    $penjualan->save();
+                }
             }
 
             return response()->json([
