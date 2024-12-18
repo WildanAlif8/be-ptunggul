@@ -39,6 +39,7 @@ class PelangganController extends Controller
         $validated= $request->validate([
             'nama'=> 'required|string|max:255',
             'domisili'=> 'required|string|max:255',
+            'alamat'=> 'required|string|max:255',
             'jenis_kelamin'=> 'required|in:PRIA,WANITA',
         ]);
 
@@ -47,6 +48,7 @@ class PelangganController extends Controller
             'kode' => $kode,
             'nama' => $validated['nama'],
             'domisili' => $validated['domisili'],
+            'alamat' => $validated['alamat'],
             'jenis_kelamin' => $validated['jenis_kelamin'],
         ]);
 
@@ -91,6 +93,7 @@ class PelangganController extends Controller
         $validated = $request->validate([
             'nama' => 'sometimes|required|string|max:255',
             'domisili' => 'sometimes|required|string|max:255',
+            'alamat' => 'sometimes|required|string|max:255',
             'jenis_kelamin' => 'sometimes|required|in:PRIA,WANITA',
         ]);
     

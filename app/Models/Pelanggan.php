@@ -15,6 +15,7 @@ class Pelanggan extends Model
         'nama',
         'domisili',
         'jenis_kelamin',
+        'alamat',
     ];
 
 

@@ -38,6 +38,7 @@ class BarangController extends Controller
         $validated = $request->validate([
             'nama' => 'required|string|max:255',
             'kategori' => 'required|string|max:255',
+            'warna' => 'required|string|max:255',
             'harga' => 'required|integer',
         ]);
 
@@ -45,6 +46,7 @@ class BarangController extends Controller
         $barang = Barang::create([
             'kode' => $kode,
             'nama' => $validated['nama'],
+            'warna' => $validated['warna'],
             'kategori' => $validated['kategori'],
             'harga' => $validated['harga'],
         ]);
@@ -88,6 +90,7 @@ class BarangController extends Controller
         $validated = $request->validate([
             'nama' => 'sometimes|required|string|max:255',
             'kategori' => 'sometimes|required|string|max:255',
+            'warna' => 'sometimes|required|string|max:255',
             'harga' => 'sometimes|required|integer',
         ]);
         $barang->update($validated);

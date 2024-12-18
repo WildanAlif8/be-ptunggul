@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('kode');
             $table->string('nama');
             $table->string('kategori');
+            $table->string('warna');
             $table->integer('harga');
             $table->timestamps();
         });

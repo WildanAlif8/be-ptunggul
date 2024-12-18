@@ -21,6 +21,8 @@ class PenjualanController extends Controller
         $validated = $request->validate([
             'tgl' => 'required|date',
             'pelanggan' => 'required',
+            'warna' => 'required',
+            'alamat' => 'required',
             'subtotal' => 'required|integer',
             'items' => 'required|array',
             'items.*.barang' => 'required',
@@ -33,6 +35,8 @@ class PenjualanController extends Controller
             'nota' => $nota,
             'tgl' => $validated['tgl'],
             'subtotal' => $validated['subtotal'],
+            'warna' => $validated['warna'],
+            'alamat' => $validated['alamat'],
             'kode_pelanggan' => $validated['pelanggan'],
         ]);
 

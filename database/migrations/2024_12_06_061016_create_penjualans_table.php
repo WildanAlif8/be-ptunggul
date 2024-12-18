@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('nota');
             $table->date('tgl');
             $table->string('kode_pelanggan')->references('kode')->on('pelanggans'); // Relasi ke tabel 'pelanggans'
+            // $table->string('alamat')->references('alamat')->on('alamat');
             $table->integer('subtotal');
             $table->timestamps();
         
